@@ -2,13 +2,13 @@
  
 import serial
 import MySQLdb
- #identificador del puerto, esto varia entre linux y windows
-arduino = serial.Serial('/dev/ttyACM0',9600)
+ #identificador del puerto, esto varia entre linux y windows para la RaspBerry
+RB = serial.Serial('/dev/ttyACM0',9600)
 
-print (arduino.readline())
-print (arduino.readline())
+print (RB.readline())
+print (RB.readline())
 while True:
-    getSerialValue= arduino.readline()   
+    getSerialValue= RB.readline()   
     #Conección de MySQL en python
     db = MySQLdb.connect("localhost","root","password","RB")
     #SI la cadena no esta vacia procede a hacer los registros en la base de datos.
@@ -35,4 +35,4 @@ while True:
             print ("Datos erroneos")
  
  
-arduino.close()
+RB.close()
