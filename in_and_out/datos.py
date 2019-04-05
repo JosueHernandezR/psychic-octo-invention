@@ -1,5 +1,3 @@
-#!/usr/bin/env python
- 
 import serial
 import MySQLdb
  #identificador del puerto, esto varia entre linux y windows para la RaspBerry
@@ -33,6 +31,4 @@ while True:
             db.commit()
         except ValueError:
             print ("Datos erroneos")
- 
- 
 RB.close()
