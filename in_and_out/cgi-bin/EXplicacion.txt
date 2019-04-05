@@ -1,0 +1,3 @@
+Estos archivos fueron solo de prueba, no serán usado en el proyecto
+si gusta usar un servidor local y no el de apache, consulte esta página para ahondar mas en la información:
+https://recursospython.com/guias-y-manuales/introduccion-web-cgi/

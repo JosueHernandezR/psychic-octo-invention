@@ -1,0 +1,47 @@
+En primer lugar, vamos a crear la base de datos; para ello, necesitaremos el motor de 
+base de datos Mysql(También es válido MariaDB); por lo que usaremos el comando correspondiente 
+para instalarla, para instalar Mysql, usaremos el siguiente comando:
+
+apt-get install mysql-server
+
+Con el servidor ya instalado, vamos a pasar a crear una base de datos y a crear una tabla; 
+para ello usaremos el siguiente comando para conectarnos a nuestra base de datos:
+
+$mysql -u root -p
+Introducimos la contraseña del usuario root que hemos tenido que crear al instalar Mysql. 
+Ahora estamos dentro del interprete de Mysql y vamos a crear la base de datos. 
+Se ejecuta el archivo bdMysql.sql para que se cree la base de datos.
+Tras crear la tabla correctamente, ya estamos preparados para pasar a crear el proceso en 
+segundo plano que inserte en la base de datos; para ello recurriremos a python y por lo tanto 
+tenemos que instalar una serie de librerías necesarias para poder conectarnos en primer lugar al puerto 
+serie USB y por otro lado poder guardar la información en la base de datos. En primer lugar, instalaremos 
+la librería de conexión con base de datos para Python.
+
+#apt-get install python-mysqldb
+
+Instalada la librería de Python, pasaremos a instalar la librería Pyserial para conectarnos por puerto serie 
+a nuestro Arduino. Para instalar esta librería utilizaremos la utilidad Pip para Python.
+
+#pip install pyserial
+
+Ya que hemos terminado de configurar todo lo necesario para crear el proceso en segundo plano. 
+Seguidamente ejecutamos el archivo "datos.py" donde recoge la información y la manda a la base de datos.
+
+El Script anterior se conecta al Arduino por puerto serie y cada vez que recibe los datos en string, 
+lo pasea y después lo inserta en la base de datos por medio de una sentencia SQL into. 
+
+Una vez que tenemos este proceso listo, vamos a pasar a crear la web. para ello vamos a crear un script CGI 
+para Python. Para lo cual necesitaremos instalar el servidor web apache.
+Se tiene que instalar apache 2, anexo la pagina que he consultado para proceder a que 
+la página web funcione:
+https://www.youtube.com/watch?v=x_1rgQwk5fM
+EN ese link se explica a detalle que se tiene que hacer paso a paso 
+para montar el archivo en el servidor apache, todo esto para python 3
+Recuerde que si no se realiza la operación de copy intenlo nuevamente con sudo
+
+No he probado el archivo graficaonlypython.py pero en esencia grafica en tiempo real y lo guarda en un archivo de texto plano
+Cualquiera de los dos, pruebalos y modifica lo que sea necesario para que funcione en raspberry
+Trabajan ambos solo con archivos de cadena
+"0.000000, 156.023, 1564.4156 \n"
+No se trabaja con archivos json los dos tienen diferentes formas de extraer los dattos
+usa el que mas te agrade.
