@@ -21,16 +21,14 @@ def GetData(out_data):
     with serial.Serial('/dev/ttyUSB1',115200, timeout=1) as ser:
         print(ser.isOpen())
         while True:
-            line = ser.readline().decode('utf-8')
-            # Si la línea tiene 'Roll' la parseamos y extraemos el valor
-            if "Roll" in line:
-                res = re.search("Roll: ([-+]?(\d+(\.\d*)?|\.\d+)([eE][-+]?\d+)?)", line)
-
-                # Añadimos el nuevo valor, si hay más de 200 muestras quitamos la primera
-                # para que no se nos acumulen demasiados datos en la gráfica
-                out_data[1].append( float(res.group(1)) )
-                if len(out_data[1]) > 200:
-                    out_data[1].pop(0)
+            line = ser.readline().decode('utf-8') # Recibimos por ejemplo: '11.6855913537; 3.74792472633; 2.39604982471;'
+            column = 0
+            for i in line.split(";"): # Recorremos los campos que hemos recibido
+                try: # Hacemos un try, porque el último campo estará vacío, en ese caso nos saltará excepción, así que simplemente pasamos
+                    out_data(column).append(float(i)) # Asignamos a cada columna de los datos para pintar, la columna correspondiente del input
+                    column = column + 1
+                except:
+                    pass
                
 
 # Función que actualizará los datos de la gráfica
